@@ -2,24 +2,33 @@
 
 
 
-//This is the countdown timer functionality - play with it some more
+//This is the countdown timer functionality
 
 var duration = 0;
-var now = 5 + 1; //Really this is equal to 5 seconds as the duration
+var now = 0;
 
-var timer = setInterval(timer, 1000);
+function startTimer(value) {
+	//Clears the current countdown timer
+	clearInterval(timer); 
+	document.getElementById('counter').innerHTML = '';
 
-function timer() {
+	now = value;
+	timer = setInterval(countTimer, 1000);
+	//'timer' variable must be global in order for the clearInterval function to shut down the timer
+}
+
+function countTimer() {
 	var count = now - duration;
 
 	if (count <= now && count > 1) {
 		now--;
 		var seconds = now;
-
 		document.getElementById('counter').innerHTML = seconds + ' seconds';
 	}
 	else {
-		document.getElementById('counter').innerHTML = 'The countdown has finished';
+		clearInterval(timer); 
+		document.getElementById('counter').innerHTML = 'The countdown has finished';	
 	}
-
 }
+//----------------------------------------------------------------------------------
+
