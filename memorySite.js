@@ -27,8 +27,15 @@ function countTimer() {
 	}
 	else {
 		clearInterval(timer); 
-		document.getElementById('counter').innerHTML = 'The countdown has finished';	
+		document.getElementById('counter').innerHTML = 'Time is up!';	
 	}
 }
+
+function endTimer() {
+	clearInterval(timer); 
+	document.getElementById('counter').innerHTML = 'Time is up!';
+}
 //----------------------------------------------------------------------------------
+
+//See todoist list for next functionality to be built
 
