@@ -39,3 +39,7 @@ h1 {
 	margin-top: 5px;
 }
 
+#numDisplay2 li {
+	display: inline-block;
+	list-style-type: none;
+}
