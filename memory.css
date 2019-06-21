@@ -112,16 +112,19 @@ h1 {
 	float: left;
 }
 
-.itemDetails {
+#itemDetails1, #itemDetails2, #itemDetails3, #itemDetails4 {
 	width: 2vw;
 	height: 2vw;
 	background-color: orange;
 	float: right;
-	/*
-	Will need to change these to individual IDs down the line to target each one
-	Will be using these question marks to hover over to get a little tooltip as to
-	what the item does for you.
-	*/
+	position: relative;
+}
+
+#itemDescOne {
+	visibility: hidden;
+}
+#toolTipOne {
+	position: relative;
 }
 
 .buyBut {
