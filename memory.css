@@ -43,3 +43,8 @@ h1 {
 	display: inline-block;
 	list-style-type: none;
 }
+
+#userAnswer {
+	width: 13vw;
+	height: auto;
+}
