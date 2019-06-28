@@ -22,6 +22,9 @@ var questionObj = {
 	]
 };
 
+var answers = [];
+
+
 
 //Starts a game on Easy difficulty
 function easyGame() {
@@ -56,22 +59,39 @@ function easyGame() {
 
 //Generates the questions to answer
 function genQuest(value) {
+	var random1 = 0;
 	
 	for (var i = 0; i < value; i++) {
-		var random1 = Math.floor(Math.random() * 3);
-
+		
 		if (random1 == 0) {
 			document.getElementById('question').innerHTML += '<div>' + 
-			questionObj.color[Math.floor(Math.random() * 5)] + '</div>';
+			questionObj.color[Math.floor(Math.random() * 5)] + '</div>' + '<input type="number" id="questions' + i + '">';
+
+			random1++;
 		}
 		else if (random1 == 1) {
 			document.getElementById('question').innerHTML += '<div>' + 
-			questionObj.size[Math.floor(Math.random() * 2)] + '</div>';
+			questionObj.size[Math.floor(Math.random() * 2)] + '</div>' + '<input type="number" id="questions' + i + '">';
+
+			random1++;
 		}
 		else if (random1 == 2) {
 			document.getElementById('question').innerHTML += '<div>' + 
-			questionObj.sequence[Math.floor(Math.random() * 2)] + '</div>';
+			questionObj.sequence[Math.floor(Math.random() * 2)] + '</div>' + 
+			'<input type="text" id="questions' + i + '" placeholder="separate each color by a space">';
+
+			random1 = 0;
 		}
 	}
+
+}
+
+
+function ansQuest(value) {
+	
+	for (var i = 0; i < value; i++) {
+		answers[i].push(document.getElementById('questions' + i).value);
+	}
+
 
 }
