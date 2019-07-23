@@ -46,14 +46,33 @@ var sizeNum = {
 //User score
 var userScore = [];
 
+//Timer variables
+var duration = 0;
+var now = 0;
+var timerString = [];
+var stopTrigger = 0;
+
 
 
 //Starts a game on Easy difficulty
 function easyGame() {
 	clearGame();
 	genVariables(6);
-	//Timer goes here
-	genQuest(3);
+	blockTimer(61);
+}
+
+//Starts a game on Medium difficulty
+function mediumGame() {
+	clearGame();
+	genVariables(9);
+	blockTimer(61);
+}
+
+//Starts a game on Hard difficulty
+function hardGame() {
+	clearGame();
+	genVariables(12);
+	blockTimer(61);
 }
 
 
@@ -97,6 +116,12 @@ function genQuest(num2) {
 
 //Submits the user's answers for review and score
 function ansQuest(num) {
+
+	//Clears the timer early, indicates that the user finished in time
+	clearInterval(timer); 
+	document.getElementById('blockCounter').innerHTML = 'Let\'s see how you did!';
+	document.getElementById('question').style.visibility = 'hidden'; //Clears questions
+
 
 	if (document.getElementById('questions0').value == '' || 
 		document.getElementById('questions1').value == '' || 
@@ -160,8 +185,8 @@ function ansQuest(num) {
 		document.getElementById('question').innerHTML = '';
 
 		//Printing score results to the screen
-		document.getElementById('patterns').innerHTML = 'Question 1: ' + userScore[0] + 
-		'Question 2: ' + userScore[1] + 'Question 3: ' + userScore[2];
+		document.getElementById('finalScore').innerHTML = 'Question 1: ' + userScore[0] + 
+		' Question 2: ' + userScore[1] + ' Question 3: ' + userScore[2];
 	}
 }
 
@@ -171,6 +196,8 @@ function ansQuest(num) {
 function clearGame() {
 	document.getElementById('patterns').innerHTML = '';
 	document.getElementById('question').innerHTML = '';
+	document.getElementById('finalScore').innerHTML = '';
+	document.getElementById('submit').style.visibility = 'hidden';
 	answers = [];
 	colorSeq = [];
 	sizeSeq = [];
@@ -217,5 +244,48 @@ function genVariables(num1) {
 		sizeNum[size]++;
 		colorSeq.push(color);
 		sizeSeq.push(size);
+	}
+}
+
+
+
+//Timer functions
+function blockTimer(value) {
+	if (value > 60) {
+		now = value;
+		timer = setInterval(countTimer, 1000);
+	}
+	else {
+		now = value;
+		timer = setInterval(countTimer, 1000);
+	}
+//'timer' variable must be global in order for the clearInterval function to shut down the timer
+}
+
+function countTimer() {
+	var count = now - duration;
+
+	if (count <= now && count > 1) {
+		now--;
+		var seconds = now;
+		document.getElementById('blockCounter').innerHTML = seconds + ' seconds';
+	}
+	else {
+		clearInterval(timer); 
+		document.getElementById('blockCounter').innerHTML = 'Time is up!';
+
+		if (stopTrigger == 0) {
+			stopTrigger++
+			document.getElementById('patterns').style.visibility = 'hidden'; //Clears pattern
+			document.getElementById('blockCounter').innerHTML = 'Answer!';
+			blockTimer(60); //Starts the answer timer
+			genQuest(3); //Generates the questions for the user to answer
+			document.getElementById('submit').style.visibility = 'visible'; //Shows submit button for the user
+		}
+		else {
+			clearInterval(timer); 
+			document.getElementById('blockCounter').innerHTML = 'Time is up! You lose!';
+			document.getElementById('question').style.visibility = 'hidden'; //Clears questions
+		}
 	}
 }

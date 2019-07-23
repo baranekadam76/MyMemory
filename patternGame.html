@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>testfile</title>
+	<title>Patterns</title>
 	<script type="text/javascript" src="blocks.js"></script>
 </head>
 <body>
@@ -9,10 +9,12 @@
 	<button onclick="easyGame()">Easy</button>
 	<button onclick="mediumGame()">Medium</button>
 	<button onclick="hardGame()">Hard</button>
-	<button onclick="ansQuest(3)">Submit Answers</button>
+	<button onclick="ansQuest(3)" id="submit" style="visibility: hidden;">Submit Answers</button>
+	<span id="blockCounter"></span>
 	<div id="question" style="width: 30vw; height: auto; margin: auto; margin-bottom: 15px;"></div>
 	<div id="questError"></div>
-	<div id="patterns" style="width: 80vw; height: 70vh; margin: auto; background-color: lightgray; display: flex; justify-content: space-between;">
+	<div id="finalScore"></div>
+	<div id="patterns" style="width: 80vw; height: auto; margin: auto; margin-top: 50px; display: flex; justify-content: space-between; flex-wrap: wrap;">
 
 	</div>
 </body>

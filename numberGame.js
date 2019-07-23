@@ -5,6 +5,8 @@ var stopTrigger = 0;
 var userInput = '';
 var finalScore = 0;
 
+
+//Timer functions
 function numbersTimer(value) {
 	if (value > 60) {
 		numMemory();
@@ -46,8 +48,6 @@ function countTimer() {
 	}
 }
 
-
-
 function numMemory() {
 	for (var i = 0; i < 30; i++) {
 		numString.push(Math.floor(Math.random() * 9));
@@ -55,6 +55,11 @@ function numMemory() {
 
 	document.getElementById('numDisplay').innerHTML = numString.join(' ');
 }
+
+
+
+
+
 
 function numAnswer() {
 	var userArray = userInput.split('');
